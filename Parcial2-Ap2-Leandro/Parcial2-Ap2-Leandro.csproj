@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -66,8 +72,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MasterPage.Master" />
+    <Content Include="App_Data\ParcialDb.mdf" />
+    <Content Include="App_Data\ParcialDb_log.ldf">
+      <DependentUpon>ParcialDb.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.js" />
+    <Content Include="Content\bootstrapTheme.min.css" />
+    <Content Include="Content\jquery-2.2.0.min.js" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -76,23 +93,35 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UI\Registros\FormPresupuesto.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MasterPage.Master.cs">
-      <DependentUpon>MasterPage.Master</DependentUpon>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\FormPresupuesto.aspx.cs">
+      <DependentUpon>FormPresupuesto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterPage.Master.designer.cs">
-      <DependentUpon>MasterPage.Master</DependentUpon>
+    <Compile Include="UI\Registros\FormPresupuesto.aspx.designer.cs">
+      <DependentUpon>FormPresupuesto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidad.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Base de Datos\" />
-    <Folder Include="UI\Consultas\" />
-    <Folder Include="UI\Registros\" />
-    <Folder Include="UI\Reportes\" />
+    <ProjectReference Include="..\Bll\Bll.csproj">
+      <Project>{52d736f7-c819-4e7a-8d86-3c4bcf2a0426}</Project>
+      <Name>Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{53A60E3B-C7C9-45AC-9F0F-D0DBABB58130}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
